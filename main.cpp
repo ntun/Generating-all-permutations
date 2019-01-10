@@ -1,6 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+#include <bits/stdc++.h>
 using namespace std;
+
+unordered_set<string> cache;
+
+string value = "";
+
+string old_value = "";
 
 int factorial(int n) {
     if (n == 0) {
@@ -66,11 +74,30 @@ vector<vector<int>> helper(vector<int>& nums, int start_index, vector<int> entry
         return permutations;
     }
 
-    entry.push_back(nums[start_index]);
-    visited[start_index] = true;
 
-    if (entry.size() == nums.size()) {
+    if (entry.empty()) {
+        old_value = to_string(nums[start_index]);
+        cout << "empty " << old_value << endl;
+    }
+
+    entry.push_back(nums[start_index]);
+
+    value += to_string(nums[start_index]);
+
+    visited[start_index] = true;
+    cout << value << " (" << start_index << ") " << endl;
+
+    if (entry.size() == nums.size() && cache.find(value) == cache.end()) {
+        cout << value << " not found" << endl;
         permutations.push_back(entry);
+        cache.insert(value);
+        value = old_value;
+        old_value = "";
+    }
+
+    if (cache.find(value) != cache.end()) {
+        value = old_value;
+        old_value = "";
     }
 
     for (int i = 0; i < nums.size(); i++) {
@@ -117,7 +144,7 @@ vector<vector<int>> permute(vector<int>& nums) {
 
 
 int main() {
-    vector<int> nums = {1, 2, 3};
+    vector<int> nums = {1, 1, 2};
 
     vector<vector<int>> permutations = permute(nums);
 

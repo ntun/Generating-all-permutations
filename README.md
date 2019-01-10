@@ -1,3 +1,3 @@
 # Generating permutations of an integer array
 
-Generating all permutations in an integer array can be translated as generating all permutations of Hamiltonian paths in a complete graph with the number of nodes equal to nums' size. In this program, I used a backtracking DFS algorithm to span through all possible combinations of Hamiltonian paths, while setting different start nodes. The collection of all those possible combinations of Hamiltonian path equals the permutations of the integer array.
+Generating all permutations of an integer array can be translated as generating all permutations of Hamiltonian paths in a complete graph with the number of nodes equal to nums' size. In this program, I used a backtracking DFS algorithm to span through all possible combinations of Hamiltonian paths, while setting different start nodes. The collection of all those possible combinations of Hamiltonian path equals the permutations of the integer array.
